@@ -1,0 +1,44 @@
+<% if session[:flow] == 'new' %>
+  <h1>CRIANDO FILME</h1>
+<% else %>
+  <h1>EDITANDO FILME</h1>
+<% end %>
+
+<% if flash[:notice] %>
+    <p style="color: red;"><%= flash[:notice] %></p>
+    <% flash.clear %>
+<%end%>
+
+<%= form_with model: movie do |form| %>
+  <%= form.label'Título' %>
+  <%= form.text_field :title %><br><br>
+
+  <%= form.label'Ano de lançamento' %>
+  <%= form.date_field :release_year %><br><br>
+
+  <%= form.label'Sinopse' %>
+  <%= form.text_area :synopsis %><br><br>
+
+  <%= form.label'Poster' %>
+  <%= form.file_field :poster %><br><br>
+
+  <%= form.label'País' %>
+  <%= form.text_field :country %><br><br>
+
+  <%= form.label'Duração' %>
+  <%= form.number_field :film_runtime %><br><br>
+
+  <%= form.label 'Gênero' %>
+  <%= form.collection_select :genre_id, Genre.all, :id, :name %><br><br>
+  
+  <%= form.label 'Diretor' %>
+  <%= form.collection_select :director_id, Director.all, :id, :name %><br><br>
+
+  <%= form.submit 'Salvar' %>
+<% end %><br>
+
+<% if session[:flow] == 'new' && params[:action] == 'new'%>
+  <%= link_to 'Cancelar', root_path %>
+<% else %>
+  <%= link_to 'Cancelar', movie_path(@movie.id) %>
+<% end %>

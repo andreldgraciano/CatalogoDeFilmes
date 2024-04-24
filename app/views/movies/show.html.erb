@@ -1,0 +1,37 @@
+<%= link_to 'Lista de Filmes', movies_path %>
+
+<h1><%= @movie.title %></h1>
+
+<div style="display: flex;">
+  <div>
+    <% if @movie.poster.attached? %>
+      <%= image_tag(@movie.poster, style:"height: 100px") %>
+    <% else %>
+      <p>Sem Poster adicionado</p>
+    <% end %>
+  </div>
+
+  <div>
+    <ul>
+      <li>
+        Ano de lançamento: <%= @movie.release_year %>
+        <% if @movie.release_year <= @current_date %>
+        <span style="color: #FFFFFF;"><strong style="background-color: #00FF00;padding: 5px;margin: 5px">Lançado!</strong></span>
+        <% else %>
+          <span style="color: #FFFFFF;"><strong style="background-color: #FF0000;padding: 5px;margin: 5px">Não Lançado!</strong></span>
+        <% end %>
+      </li>
+      <li>Sinopse: <%= @movie.synopsis %></li>
+      <li>País: <%= @movie.country %></li>
+      <li>Duração: <%= @movie.film_runtime %></li>
+      <li>Gênero: <%= @movie.genre.name %></li>
+      <li>Diretor: <%= @movie.director.name %></li>
+    </ul>
+  </div>
+</div>
+
+<% if session[:flow] == 'new' %>
+  <%= link_to 'Cadastrar outro filme', new_movie_path %><br><br>
+<% end %>
+
+<%= link_to 'Editar', edit_movie_path(@movie.id) %>

@@ -1,0 +1,15 @@
+<% session[:flow] = 'reset' %>
+
+<nav>
+  <dl>
+    <dt>Gêneros</dt>
+      <dd> <%= link_to 'Listar Gêneros', genres_path %> </dd>
+      <dd> <%= link_to 'Cadastrar Gênero', new_genre_path %> </dd>
+    <dt>Diretores</dt>
+      <dd> <%= link_to 'Listar Diretores', directors_path %> </dd>
+      <dd> <%= link_to 'Cadastrar Diretor', new_director_path %> </dd>
+    <dt>Filmes</dt>
+      <dd> <%= link_to 'Listar Filmes', movies_path %> </dd>
+      <dd> <%= link_to 'Cadastrar Filme', new_movie_path %> </dd>
+  </dl>
+</nav>

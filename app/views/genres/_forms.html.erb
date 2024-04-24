@@ -1,0 +1,23 @@
+<% if session[:flow] == 'new' %>
+  <h1>CRIANDO GENERO</h1>
+<% else %>
+  <h1>EDITANDO GÊNERO</h1>
+<% end %>
+
+<% if flash[:notice] %>
+    <p style="color: red;"><%= flash[:notice] %></p>
+    <% flash.clear %>
+<%end%>
+
+<%= form_with model: genre do |form| %>
+  <%= form.label 'Nome' %>
+  <%= form.text_field :name %><br><br>
+
+  <%= form.submit 'Salvar' %>
+<% end %><br>
+
+<% if session[:flow] == 'new' && params[:action] == 'new'%>
+  <%= link_to 'Cancelar', root_path %>
+<% else %>
+  <%= link_to 'Cancelar', genre_path(@genre.id) %>
+<% end %>

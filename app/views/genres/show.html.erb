@@ -1,0 +1,20 @@
+<%= link_to 'Lista de Gêneros', genres_path %>
+
+<h1><%= @genre.name %></h1>
+
+<% if @movies.empty? %>
+  <p>Nao possui filme cadastrado para este gênero.</p>
+<% else %>
+  <h3>Filmes deste gênero:</h3>
+  <ul>
+    <% @movies.each do |m| %>
+      <li> <%= m.title %> </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if session[:flow] == 'new' %>
+  <%= link_to 'Cadastrar outro gênero', new_genre_path %><br><br>
+<% end %>
+
+<%= link_to 'Editar', edit_genre_path(@genre.id) %>

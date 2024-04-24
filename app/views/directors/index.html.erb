@@ -1,0 +1,11 @@
+<% session[:flow] = 'reset' %>
+
+<%= link_to 'Cadastrar diretor', new_director_path %>
+
+<h1>Diretores:</h1>
+
+<ul>
+  <% @directors.each do |d| %>
+  <li><%= link_to d.name, director_path(d.id) %></li>
+  <% end %>
+</ul>

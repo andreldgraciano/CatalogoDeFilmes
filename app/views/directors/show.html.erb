@@ -1,0 +1,26 @@
+<%= link_to 'Lista de Diretores', directors_path %>
+
+<h1><%= @director.name %></h1>
+
+<ul>
+  <li>Nacionalidade: <%= @director.nationality %></li>
+  <li>Data de nascimento: <%= @director.birth_date %></li>
+  <li>Genero Favorito: <%= @director.genre.name %></li>
+</ul>
+
+<% if @movies.empty? %>
+  <p>Nao possui filme cadastrado para este diretor.</p>
+<% else %>
+  <h3>Filmes deste diretor:</h3>
+  <ul>
+    <% @movies.each do |m| %>
+      <li> <%= m.title %> </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if session[:flow] == 'new' %>
+  <%= link_to 'Cadastrar outro diretor', new_director_path %><br><br>
+<% end %>
+
+<%= link_to 'Editar', edit_director_path(@director.id) %>

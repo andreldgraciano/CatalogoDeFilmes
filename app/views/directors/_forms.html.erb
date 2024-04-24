@@ -1,0 +1,27 @@
+<% if session[:flow] == 'new' %>
+  <h1>CRIANDO DIRETOR</h1>
+<% else %>
+  <h1>EDITANDO DIRETOR</h1>
+<% end %>
+
+<%= form_with model: director do |form| %>
+  <%= form.label 'Nome' %>
+  <%= form.text_field :name %><br><br>
+
+  <%= form.label 'Nacionalidade' %>
+  <%= form.text_field :nationality %><br><br>
+
+  <%= form.label 'Data de nascimento' %>
+  <%= form.date_field :birth_date %><br><br>
+
+  <%= form.label 'Genero favorito' %>
+  <%= form.collection_select :genre_id, Genre.all, :id, :name %><br><br>
+
+  <%= form.submit 'Salvar' %>
+<% end %><br>
+
+<% if session[:flow] == 'new' && params[:action] == 'new'%>
+  <%= link_to 'Cancelar', root_path %>
+<% else %>
+  <%= link_to 'Cancelar', director_path(@director.id) %>
+<% end %>
